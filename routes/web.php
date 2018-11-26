@@ -39,3 +39,12 @@ Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 //end同下面
 
 
+//个人设置资源路由
+Route::resource('users','UsersController',['only'=>['show','update','edit']]);
+
+/**
+ * 等同于：
+*Route::get('/users/{user}', 'UsersController@show')->name('users.show'); //显示用户个人信息界面
+*Route::get('/users/{user}/edit', 'UsersController@edit')->name('users.edit'); //编辑个人资料页面
+*Route::patch('/users/{user}', 'UsersController@update')->name('users.update');//处理edit页面提交的更新
+ */
