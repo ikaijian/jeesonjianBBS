@@ -52,7 +52,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://jeesonjian.larabbs.com'),
+    'url' => env('APP_URL', 'http://www.jeesonjian_larabbs.com'),
 
     /*
     |--------------------------------------------------------------------------
