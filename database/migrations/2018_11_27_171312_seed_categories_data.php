@@ -21,18 +21,19 @@ class SeedCategoriesData extends Migration
                 'description' => '分享创造，分享发现',
             ],
             [
-               'name'=>'教程',
-               'description'=>'开发技巧，推荐扩展包' ,
+                'name'=>'教程',
+                'description'=>'开发技巧，推荐扩展包' ,
             ],
             [
                 'name'=>'问答',
                 'description'=>'互助互帮，友善解答',
             ],
             [
-              'name'=>'公告',
+                'name'=>'公告',
                 'description'=>'站点公告'
             ],
         ];
+        DB::table('categories')->insert($categories);
     }
 
     /**
