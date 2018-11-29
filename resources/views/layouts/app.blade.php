@@ -9,6 +9,7 @@
     <!-- CSRF Token -->
     <meta name="crsf-token" content="{{csrf_token()}}">
     <title>@yield('title','jeesonBBS')-BBS</title>
+    <meta name="description" content="@yield('description', '爱好者社区')" />
 
     <!-- Styles -->
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
