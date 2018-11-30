@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Handlers\ImageUploadHandler;
 use App\Models\Category;
 use App\Models\Topic;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\TopicRequest;
@@ -52,15 +53,28 @@ class TopicsController extends Controller
 
     public function edit(Topic $topic)
     {
-        $this->authorize('update', $topic);
-        return view('topics.create_and_edit', compact('topic'));
+
+        try{
+            $this->authorize('update', $topic);
+        }catch (AuthorizationException $e){
+            $result= "无权访问该页面";
+            return view('errors.403',compact('result'));
+        }
+
+        $categories=Category::all();
+        return view('topics.create_and_edit', compact('topic','categories'));
     }
 
     public function update(TopicRequest $request, Topic $topic)
     {
-        $this->authorize('update', $topic);
-        $topic->update($request->all());
+        try{
+            $this->authorize('update', $topic);
+        }catch (AuthorizationException $e){
+            $result="无权访问该页面";
+            view('errors.403',compact('result'));
+        }
 
+        $topic->update($request->all());
         return redirect()->route('topics.show', $topic->id)->with('message', '更新话题成功.');
     }
 
