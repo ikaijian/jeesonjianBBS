@@ -35,8 +35,13 @@ class TopicsController extends Controller
         return view('topics.index', compact('topics'));
     }
 
-    public function show(Topic $topic)
+    public function show(Request $request,Topic $topic)
     {
+
+        //发送 301 永久重定向指令给浏览器，跳转到带 Slug 的链接
+        if ( ! empty($topic->slug) && $topic->slug != $request->slug) {
+            return redirect($topic->link(), 301);
+        }
         return view('topics.show', compact('topic'));
     }
 
@@ -48,7 +53,8 @@ class TopicsController extends Controller
 //		$topic = Topic::create($request->all());
         $topic->user_id = Auth::id();
         $topic->save();
-        return redirect()->route('topics.show', $topic->id)->with('message', '创建话题成功');
+//        return redirect()->route('topics.show', $topic->id)->with('message', '创建话题成功');
+        return redirect()->to($topic->link())->with('message', '创建话题成功');
     }
 
     public function edit(Topic $topic)
