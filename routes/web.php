@@ -61,3 +61,5 @@ Route::post('upload_image','TopicsController@uploadImage')->name('topics.upload_
 
 //{slug?} ，? 意味着参数可选
 Route::get('topics/{topic}/{slug?}', 'TopicsController@show')->name('topics.show');
+
+Route::resource('replies', 'RepliesController', ['only' => ['index', 'show', 'create', 'store', 'update', 'edit', 'destroy']]);
