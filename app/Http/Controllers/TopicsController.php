@@ -9,22 +9,14 @@ use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\TopicRequest;
-
+use App\Models\User;
 use Auth;
 
 class TopicsController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth', ['except' => ['index', 'show']]);
-    }
-
-
-    //新建话题
-    public function create(Topic $topic)
-    {
-        $categories = Category::all();
-        return view('topics.create_and_edit', compact('topic', 'categories'));
+        $this->middleware('auth', ['except' => ['index','show']]);
     }
 
     public function index(Request $request, Topic $topic)
@@ -34,6 +26,15 @@ class TopicsController extends Controller
         $topics = $topic->withOrder($request->order)->paginate(15);
         return view('topics.index', compact('topics'));
     }
+
+    //新建话题
+    public function create(Topic $topic)
+    {
+        $categories = Category::all();
+        return view('topics.create_and_edit', compact('topic', 'categories'));
+    }
+
+
 
     public function show(Request $request,Topic $topic)
     {
