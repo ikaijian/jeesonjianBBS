@@ -5,10 +5,15 @@ namespace App\Models;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Auth;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
 
+    //使用 laravel-permission 提供的 Trait —— HasRoles此举能获取到扩展包提供的所有权限和角色的操作方法
+    use HasRoles;
+
+    //消息通知
     use Notifiable {
         notify as protected laravelNotify;
     }

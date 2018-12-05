@@ -44,5 +44,17 @@ class UsersTableSeeder extends Seeder
         $user->email = '1144285537@qq.com';
         $user->avatar = 'https://iocaffcdn.phphub.org/uploads/images/201710/14/1/ZqM7iaP4CR.png?imageView2/1/w/200/h/200';
         $user->save();
+
+
+
+        /**
+         * 初始化用户角色，将一号用户设置为站长
+         * assignRole() 方法在 HasRoles 中定义
+         */
+        $user->assignRole('Founder');
+
+        //将2号用户设置为管理员
+        $user2=User::find(2);
+        $user2->assignRole('Maintainer');
     }
 }
