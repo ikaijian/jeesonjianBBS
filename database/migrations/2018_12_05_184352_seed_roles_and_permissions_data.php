@@ -23,14 +23,14 @@ class SeedRolesAndPermissionsData extends Migration
         //先创建权限
         Permission::create(['name'=>'manage_contents']);
         Permission::create(['name'=>'manage_users']);
-        Permission::create(['name'=>'manage_settings']);
+        Permission::create(['name'=>'edit_settings']);
 
         //创建站长角色，并赋值
         $founder=Role::create(['name'=>'Founder']);
         //
         $founder->givePermissionTo('manage_contents');
         $founder->givePermissionTo('manage_users');
-        $founder->givePermissionTo('manage_settings');
+        $founder->givePermissionTo('edit_settings');
 
         //创建管理员，并赋予权限
         $maintainer=Role::create(['name'=>'Maintainer']);
@@ -57,7 +57,7 @@ class SeedRolesAndPermissionsData extends Migration
         DB::table($tableNames['model_has_permissions'])->delete();
         DB::table($tableNames['roles'])->delete();
         DB::table($tableNames['permission'])->delete();
-        Model::unguard();
+        Model::reguard();
 
 
     }

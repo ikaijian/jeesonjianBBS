@@ -2,8 +2,10 @@
 
 namespace App\Providers;
 
+use Composer\Util\AuthHelper;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use Laravel\Horizon\Horizon;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -30,6 +32,10 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        //Horizon 控制面板访问权限
+        Horizon::auth(function ($request){
+            //是否是站长
+            return \Auth::user()->hasRole('Founder');
+        });
     }
 }
