@@ -21,7 +21,7 @@ return array(
      *
      * @type string
      */
-    'title' => config('APP_NAME', 'laraBBS'),
+    'title' => config('APP_NAME', 'jeesonjianBBS'),
 
     /*
      * 模型配置信息文件存放目录
