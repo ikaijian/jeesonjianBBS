@@ -10,6 +10,7 @@ use Spatie\Permission\Traits\HasRoles;
 class User extends Authenticatable
 {
 
+    use Traits\ActiveUserHelper;
     //使用 laravel-permission 提供的 Trait —— HasRoles此举能获取到扩展包提供的所有权限和角色的操作方法
     use HasRoles;
 

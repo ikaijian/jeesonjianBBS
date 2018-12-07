@@ -19,13 +19,18 @@ class TopicsController extends Controller
         $this->middleware('auth', ['except' => ['index','show']]);
     }
 
-    public function index(Request $request, Topic $topic)
+    public function index(Request $request, Topic $topic,User $user)
     {
 //		$topics = Topic::with('user','category')->paginate(15);
         //$request->order 是获取 URI http://larabbs.test/topics?order=recent 中的 order 参数
         $topics = $topic->withOrder($request->order)->paginate(15);
-        return view('topics.index', compact('topics'));
+
+        $active_users = $user->getActiveUsers();
+//        dd($active_users);
+        return view('topics.index', compact('topics','active_users'));
     }
+
+
 
     //新建话题
     public function create(Topic $topic)
