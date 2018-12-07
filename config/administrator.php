@@ -21,7 +21,7 @@ return array(
      *
      * @type string
      */
-    'title' => config('app.name'),
+    'title' => config('APP_NAME', 'laraBBS'),
 
     /*
      * 模型配置信息文件存放目录
@@ -58,7 +58,7 @@ return array(
      */
     'menu' => [
         '用户与权限'=>[
-          'user'
+          'users',
         ],
     ],
 
@@ -114,7 +114,7 @@ return array(
      *
      * @type string
      */
-    'logout_path' => false,
+//    'logout_path' => false,
 
     /*
      * 允许在登录成功后使用 Session::get('redirect') 将用户重定向到原本想要访问的后台页面
@@ -138,5 +138,5 @@ return array(
      */
     'locales' => [],
 
-    'custom_routes_file' => app_path('Http/routes/administrator.php'),
+//    'custom_routes_file' => app_path('Http/routes/administrator.php'),
 );

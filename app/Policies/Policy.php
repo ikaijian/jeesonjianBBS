@@ -8,10 +8,6 @@ class Policy
 {
     use HandlesAuthorization;
 
-    public function __construct()
-    {
-        //
-    }
 
 
     /**
